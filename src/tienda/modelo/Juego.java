@@ -77,4 +77,16 @@ public class Juego {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Juego{" +
+                "nombre='" + nombre + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", tamanio=" + tamanio +
+                ", precio=" + precio +
+                ", licenciasVendidas=" + licenciasVendidas +
+                ", licenciasDisponibles=" + licenciasDisponibles +
+                '}';
+    }
 }
