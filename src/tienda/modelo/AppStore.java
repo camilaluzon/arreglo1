@@ -10,6 +10,12 @@ public class AppStore {
         indice = -1;
     }
 
+    public void cargarDatos(){
+        //invoca al metodo agregarJuego() como si fuera un void porque no voy a dar ningun mensaje al usuario
+        agregarJuego(new Juego("FIFA 2026", "Deportes",15, 36,50));
+        agregarJuego(new Juego("ROBLOX", "Accion",25, 90,20));
+    }
+
     public Juego[] getJuegos() {
         return juegos;
     }
@@ -72,11 +78,16 @@ public class AppStore {
             nombre = juegos[0].getNombre();
             mayor = juegos[0].getLicenciasVendidas();
             for(Juego j : juegos){
-                if(j.getLicenciasVendidas() > mayor){
-                    nombre = j.getNombre();
-                    mayor = j.getLicenciasVendidas();
+                if(j!=null){
+                    if(j.getLicenciasVendidas() > mayor){
+                        nombre = j.getNombre();
+                        mayor = j.getLicenciasVendidas();
+                    }
+                }else{
+                    return nombre;
                 }
             }
         }
+        return nombre;
     }
 }
