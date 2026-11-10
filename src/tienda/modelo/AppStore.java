@@ -15,6 +15,7 @@ public class AppStore {
     }
     /*
     no es necesario el set porque el ingreso deberia ser por cada elemento.
+
     public void setJuegos(Juego juegos[]) {
         this.juegos = juegos;
     }
@@ -29,10 +30,13 @@ public class AppStore {
     }
 
     public Juego buscarJuego(String nombre){
-        for(int i = 0; i < indice; i++){
-            if(juegos[i].getNombre().equalsIgnoreCase(nombre)){
-                return juegos[1];
+        if(nombre!=null && !nombre.trim().isEmpty()){
+            for(int i = 0; i < indice; i++){
+                if(juegos[i].getNombre().equalsIgnoreCase(nombre)){
+                    return juegos[1];
+                }
             }
+            return null;
         }
         return null;
     }
