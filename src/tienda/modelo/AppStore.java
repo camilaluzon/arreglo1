@@ -70,6 +70,13 @@ public class AppStore {
         int mayor;
         if(indice >= 0){
             nombre = juegos[0].getNombre();
+            mayor = juegos[0].getLicenciasVendidas();
+            for(Juego j : juegos){
+                if(j.getLicenciasVendidas() > mayor){
+                    nombre = j.getNombre();
+                    mayor = j.getLicenciasVendidas();
+                }
+            }
         }
     }
 }
