@@ -31,7 +31,7 @@ public class AppStore {
 
     public Juego buscarJuego(String nombre){
         if(nombre!=null && !nombre.trim().isEmpty()){
-            for(int i = 0; i < indice; i++){
+            for(int i = 0; i <= indice; i++){
                 if(juegos[i].getNombre().equalsIgnoreCase(nombre)){
                     return juegos[1];
                 }
@@ -49,5 +49,27 @@ public class AppStore {
             }
         }
         return false;
+    }
+
+    public double vender(String nombre, int cantidad){
+        //no voy a validar los parametros para buscar pq el buscar ya lo valida y el vender
+        // del producto tmb
+        Juego j= buscarJuego(nombre);
+        if(j != null){
+            if(j.vender(cantidad)){
+                return j.getPrecio() * cantidad;
+            }else{
+                return 0;
+            }
+        }
+        return 0;
+    }
+
+    public String masVendido(){
+        String nombre = "";
+        int mayor;
+        if(indice >= 0){
+            nombre = juegos[0].getNombre();
+        }
     }
 }
