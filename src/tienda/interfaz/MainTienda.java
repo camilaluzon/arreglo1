@@ -2,6 +2,7 @@ package tienda.interfaz;
 
 import tienda.modelo.AppStore;
 import tienda.modelo.Juego;
+import tienda.utilitario.Valida;
 
 import javax.swing.*;
 import java.util.Scanner;
@@ -18,10 +19,10 @@ public class MainTienda {
             opc = Integer.parseInt(sc.nextLine());
             switch(opc){
                 case 1:{
-
+                    ingresarJuegos();
                 }break;
                 case 2:{
-
+                    mostrarJuegos();
                 }break;
                 case 3:{
 
@@ -36,7 +37,7 @@ public class MainTienda {
 
                 }break;
                 case 7:{
-
+                    System.out.println("Gracias por usar nuestros servicios");
                 }break;
             }
         }while(opc != 7);
@@ -56,8 +57,7 @@ public class MainTienda {
 
     public static void ingresarJuegos(){
         System.out.println("*******Ingreso de datos********");
-        System.out.print("Ingrese el nombre: ");
-        String nombre = sc.nextLine();
+        String nombre = Valida.leerString("Ingrese el nombre");
         System.out.print("Ingrese la categoria: ");
         String categoria = sc.nextLine();
         System.out.print("Ingrese el tamanio: ");
@@ -73,7 +73,7 @@ public class MainTienda {
         }
     }
 
-    public void mostrarJuegos(){
+    public static void mostrarJuegos(){
         Juego juegos[] = tienda.getJuegos();
         if(tienda.getIndice() >= 0){
             for(int i = 0; i <= tienda.getIndice(); i++){
