@@ -19,6 +19,10 @@ public class AppStore {
     public Juego[] getJuegos() {
         return juegos;
     }
+
+    public int getIndice() {
+        return indice;
+    }
     /*
     no es necesario el set porque el ingreso deberia ser por cada elemento.
 
