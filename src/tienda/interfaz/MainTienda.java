@@ -25,16 +25,16 @@ public class MainTienda {
                     mostrarJuegos();
                 }break;
                 case 3:{
-
+                    buscarJuego();
                 }break;
                 case 4:{
-
+                    comprar();
                 }break;
                 case 5:{
-
+                    vender();
                 }break;
                 case 6:{
-
+                    juegoMasVendido();
                 }break;
                 case 7:{
                     System.out.println("Gracias por usar nuestros servicios");
@@ -57,15 +57,13 @@ public class MainTienda {
 
     public static void ingresarJuegos(){
         System.out.println("*******Ingreso de datos********");
+
         String nombre = Valida.leerString("Ingrese el nombre");
-        System.out.print("Ingrese la categoria: ");
-        String categoria = sc.nextLine();
-        System.out.print("Ingrese el tamanio: ");
-        int tamanio = Integer.parseInt(sc.nextLine());
-        System.out.print("Ingrese el precio: ");
-        double precio = Double.parseDouble(sc.nextLine());
-        System.out.print("Ingrese el stock inicial: ");
-        int licenciasDisponibles = Integer.parseInt(sc.nextLine());
+        String categoria = Valida.leerString("Ingrese la categoria");
+        int tamanio = Valida.leerEntero("Ingrese el tamanio", 1);
+        double precio = Valida.leerDoublePositivo("Ingrese el precio");
+        int licenciasDisponibles = Valida.leerEntero("Ingrese el stock inicial", 0);
+
         if(tienda.agregarJuego(new Juego(nombre, categoria, tamanio, precio, licenciasDisponibles))){
             JOptionPane.showMessageDialog(null, "El juego se ha agregado con éxito!");
         }else{
@@ -83,5 +81,59 @@ public class MainTienda {
             System.out.println("No existe juegos a mostrar");
         }
 
+    }
+
+    public static void buscarJuego(){
+        String nombre = Valida.leerString("Ingrese el nombre del juego");
+
+        Juego j = tienda.buscarJuego(nombre);
+
+        if(j != null){
+            JOptionPane.showMessageDialog(null, j.toString());
+        }else{
+            JOptionPane.showMessageDialog(null, "El juego no se encuentra registrado");
+        }
+    }
+
+    public static void comprar(){
+        String nombre = Valida.leerString("Ingrese el nombre del juego");
+        int cantidad = Valida.leerEntero("Ingrese la cantidad de licencias a comprar", 1);
+
+        if(tienda.comprar(nombre, cantidad)){
+            JOptionPane.showMessageDialog(null, "Las licencias se han agregado correctamente");
+        }else{
+            JOptionPane.showMessageDialog(null, "No se pudo realizar la compra");
+        }
+    }
+
+    public static void vender(){
+        String nombre = Valida.leerString("Ingrese el nombre del juego");
+        int cantidad = Valida.leerEntero("Ingrese la cantidad de licencias a vender", 1);
+
+        double total = tienda.vender(nombre, cantidad);
+
+        if(total > 0){
+            JOptionPane.showMessageDialog(null, "Venta realizada correctamente.\nTotal: $" + total);
+        }else{
+            JOptionPane.showMessageDialog(null, "No se pudo realizar la venta. Verifique el juego y las licencias disponibles.");
+        }
+    }
+
+    public static void juegoMasVendido(){
+        Juego juegos[] = tienda.getJuegos();
+        boolean hayVentas = false;
+
+        for(int i = 0; i <= tienda.getIndice(); i++){
+            if(juegos[i].getLicenciasVendidas() > 0){
+                hayVentas = true;
+            }
+        }
+
+        if(hayVentas){
+            String nombre = tienda.masVendido();
+            JOptionPane.showMessageDialog(null, "El juego mas vendido es: " + nombre);
+        }else{
+            JOptionPane.showMessageDialog(null, "Todavia no se han registrado ventas");
+        }
     }
 }

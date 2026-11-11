@@ -43,10 +43,9 @@ public class AppStore {
         if(nombre!=null && !nombre.trim().isEmpty()){
             for(int i = 0; i <= indice; i++){
                 if(juegos[i].getNombre().equalsIgnoreCase(nombre)){
-                    return juegos[1];
+                    return juegos[i];
                 }
             }
-            return null;
         }
         return null;
     }

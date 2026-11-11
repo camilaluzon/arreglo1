@@ -9,11 +9,14 @@ public class Juego {
     private int licenciasDisponibles;
 
     public Juego(String nombre, String categoria, int tamanio, double precio, int licenciasDisponibles) {
-        this.nombre = nombre;
-        this.categoria = categoria;
-        this.tamanio = tamanio;
-        this.precio = precio;
-        this.licenciasDisponibles = licenciasDisponibles;
+        setNombre(nombre);
+        setCategoria(categoria);
+        setTamanio(tamanio);
+        setPrecio(precio);
+
+        if (licenciasDisponibles >= 0)
+            this.licenciasDisponibles = licenciasDisponibles;
+
         licenciasVendidas=0;
     }
 
@@ -47,7 +50,7 @@ public class Juego {
     }
 
     public void setCategoria(String categoria) {
-        if(nombre!=null && !nombre.trim().isEmpty())
+        if(categoria!=null && !categoria.trim().isEmpty())
             this.categoria = categoria;
     }
 
